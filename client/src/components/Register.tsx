@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 // const uri = "https://finance-zqy2.onrender.com";
-const uri = "http://localhost:3000"; 
+const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000"; 
 
 function Register() {
   const [name, setName] = useState("");

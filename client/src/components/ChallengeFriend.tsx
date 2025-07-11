@@ -23,7 +23,7 @@ interface Friend {
     const [selectedFriend, setSelectedFriend] = useState<string>("");
     const [selectedChallenge, setSelectedChallenge] = useState<string>("");
     const [sending, setSending] = useState<boolean>(false);
-    const uri = "http://localhost:3000";
+    const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
 
     const handleSendChallenge = async () => {
         if (!token) {

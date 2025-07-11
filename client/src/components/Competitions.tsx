@@ -37,7 +37,7 @@ export default function Competitions({ token, userId }: CompetitionsProps) {
   const [editing, setEditing] = useState<Record<string, boolean>>({});
   const [nameInputs, setNameInputs] = useState<Record<string, string>>({});
 
-  const uri = "http://localhost:3000";
+  const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
   const now = new Date();
   const currentMonth = now.getMonth();
   const currentYear = now.getFullYear();

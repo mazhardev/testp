@@ -80,7 +80,7 @@ interface User {
     const [error, setError] = useState<string | null>(null);
     const [showAllTrades, setShowAllTrades] = useState<boolean>(false);
     const token = localStorage.getItem("token");
-    const uri = "http://localhost:3000";
+    const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
     const navigate = useNavigate();
 
     useEffect(() => {
