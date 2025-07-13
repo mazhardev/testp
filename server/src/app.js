@@ -30,16 +30,18 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 // app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../../client/dist")));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
-});
+
 
 app.use("/api/v1/portfolio", updateLastActive, portfolioRouter);
 app.use("/api/v1/user", updateLastActive, userRouter);
-app.use("/api/v1/challenges", updateLastActive, challengesRouter);
-app.use("/api/v1/achievements", updateLastActive, achievementsRouter);
-app.use("/api/v1/friends", updateLastActive, friendsRouter);
-app.use("/api/v1/competitions", updateLastActive, competitionsRouter);
-app.use("/api/v1/admin", updateLastActive, adminRouter);
+app.use("/api/v1/challenges",updateLastActive, challengesRouter);
+app.use("/api/v1/achievements",updateLastActive, achievementsRouter);
+app.use("/api/v1/friends",updateLastActive, friendsRouter);
+app.use("/api/v1/competitions",updateLastActive, competitionsRouter);
+app.use("/api/v1/admin",updateLastActive, adminRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
+});
 
 export { app };

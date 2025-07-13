@@ -61,7 +61,7 @@ export default function Social({ token }: SocialProps) {
   const [error, setError] = useState<string | null>(null);
   const [inviting, setInviting] = useState(false);
 
-  const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
+  const uri = "http://localhost:3000";
 
   useEffect(() => {
     const fetchData = async () => {

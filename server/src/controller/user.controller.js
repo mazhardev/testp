@@ -84,6 +84,14 @@ const logIn = async (req, res) => {
   if (!user) {
     return res.status(400).json({ message: "Invalid email or password" });
   }
+
+      // Increment login count and set lastLogin
+    user.loginCount += 1;
+    user.lastLogin = new Date();
+    user.status = "online";
+    await user.save();
+
+
   const token = jwt.sign(
     { userId: user._id, email, role: user.role },
     process.env.JWT_SECRET,
@@ -103,4 +111,28 @@ const logIn = async (req, res) => {
   });
 };
 
-export { getUserProgress, signUp, logIn };
+const logout = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Calculate session duration
+    if (user.lastLogin) {
+      const sessionDuration = (new Date() - user.lastLogin) / 1000; // Duration in seconds
+      user.sessionDurations.push(sessionDuration);
+    }
+
+    // Update status to offline
+    user.status = "offline";
+    await user.save();
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Error logging out:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export { signUp, logIn, getUserProgress, logout };

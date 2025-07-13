@@ -14,9 +14,11 @@ const UserSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    loginCount: { type: Number, default: 0 }, // Tracks total number of logins
+    sessionDurations: [{ type: Number }], // Array of session durations in seconds
+    lastLogin: { type: Date }, // Tracks the start of the current session
   },
   { timestamps: true }
 );
-
 
 export default mongoose.model("User", UserSchema);

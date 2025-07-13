@@ -51,7 +51,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [accountBalance, setAccountBalance] = useState<number>(0);
 
-  const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
+  const uri = "http://localhost:3000";
 
   const handleLogin = (newToken: string, newName: string, newUserId: string) => {
     setToken(newToken);
@@ -62,15 +62,24 @@ function App() {
     localStorage.setItem("userId", newUserId);
   };
 
-  const handleLogout = () => {
-    setToken(null);
-    setName('');
-    setUserId(null);
-    setUserRole(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('userId');
-    window.location.href = '/login'; 
+
+  const handleLogout = async () => {
+    try {
+      await api.post(`${uri}/api/v1/user/logout`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (err) {
+      console.error("Failed during logout:", err);
+    } finally {
+      setToken(null);
+      setName("");
+      setUserId(null);
+      setUserRole(null);
+      localStorage.removeItem("token");
+      localStorage.removeItem("name");
+      localStorage.removeItem("userId");
+      window.location.href = "/login";
+    }
   };
 
   useEffect(() => {
@@ -152,9 +161,8 @@ function App() {
                 <li key={item.id}>
                   <button
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all w-full ${
-                      activeTab === item.id ? "bg-indigo-100 text-indigo-700 font-medium" : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                    } lg:px-4 lg:py-3 lg:text-sm`}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all w-full ${activeTab === item.id ? "bg-indigo-100 text-indigo-700 font-medium" : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                      } lg:px-4 lg:py-3 lg:text-sm`}
                   >
                     <div className="flex items-center">
                       <item.icon className="w-5 h-5 mr-3" />

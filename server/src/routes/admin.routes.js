@@ -8,6 +8,10 @@ import {
     getAllChallengeInvitations,
     getAllBalances,
     getAllXPs,
+    getLoginFrequency,
+    getAverageSessionDuration,
+    getTradeFrequency,
+    getChallengeCompletionRate,
 } from "../controller/admin.controller.js";
 
 const adminRouter = Router();
@@ -18,5 +22,9 @@ adminRouter.get("/tradehistories", auth, admin, getAllTradeHistories);
 adminRouter.get("/challengeinvitations", auth, admin, getAllChallengeInvitations);
 adminRouter.get("/balances", auth, admin, getAllBalances);
 adminRouter.get("/xps", auth, admin, getAllXPs);
+adminRouter.get("/login-frequency", auth, admin, getLoginFrequency);
+adminRouter.get("/session-duration", auth, admin, getAverageSessionDuration);
+adminRouter.get("/trade-frequency", auth, admin, getTradeFrequency);
+adminRouter.get("/challenge-completion-rate", auth, admin, getChallengeCompletionRate);
 
 export { adminRouter };
