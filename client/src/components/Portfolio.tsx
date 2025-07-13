@@ -25,7 +25,9 @@ interface PortfolioProps {
 }
 
   // const uri = 'https://finance-zqy2.onrender.com'
-  const uri = "http://localhost:3000"; 
+  // const uri = "http://localhost:3000"; 
+    const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
+
 
 export default function Portfolio({
   portfolio,

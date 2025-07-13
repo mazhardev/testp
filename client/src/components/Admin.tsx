@@ -116,7 +116,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ portfolio, etfs }) => {
     const [tradeFrequencies, setTradeFrequencies] = useState<TradeFrequency[]>([]);
     const [challengeCompletionRates, setChallengeCompletionRates] = useState<ChallengeCompletionRate[]>([]);
     const token = localStorage.getItem("token");
-    const uri = "http://localhost:3000";
+    // const uri = "http://localhost:3000";
+    const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -51,7 +51,8 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [accountBalance, setAccountBalance] = useState<number>(0);
 
-  const uri = "http://localhost:3000";
+  // const uri = "http://localhost:3000";
+   const uri = "http://ec2-44-212-51-157.compute-1.amazonaws.com:3000";
 
   const handleLogin = (newToken: string, newName: string, newUserId: string) => {
     setToken(newToken);
